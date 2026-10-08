@@ -1,624 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Vinayak Acharya — AI Automation & Web Developer</title>
-<meta name="description" content="Portfolio of Vinayak Acharya — AI automation with n8n, web development and web testing."/>
-
-<!-- Title Logo / Favicon -->
-<link rel="icon" type="image/svg+xml" href="logo.svg"/>
-<link rel="alternate icon" type="image/png" href="logo.svg"/>
-<link rel="apple-touch-icon" href="logo.svg"/>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#0b0b12;
-  --bg2:#11111c;
-  --bg3:#171726;
-  --border:rgba(255,255,255,.08);
-  --border2:rgba(255,255,255,.16);
-  --text:#f2f2fa;
-  --muted:#9a9ab5;
-  --faint:#55556f;
-  --accent:#8b7cf7;
-  --accent2:#5eead4;
-  --accent-grad:linear-gradient(120deg,#8b7cf7,#5eead4);
-  --radius:16px;
-  --shadow:0 20px 60px rgba(0,0,0,.5);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  font-family:'Inter',system-ui,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.6;
-  overflow-x:hidden;
-}
-h1,h2,h3,.sora{font-family:'Sora',sans-serif}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-section{position:relative}
-.container{max-width:1100px;margin:0 auto;padding:0 24px}
-
-/* ── subtle background glow ── */
-.bg-glow{
-  position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background:
-    radial-gradient(600px 400px at 80% 10%, rgba(139,124,247,.10), transparent 60%),
-    radial-gradient(500px 400px at 10% 80%, rgba(94,234,212,.07), transparent 60%);
-}
-
-/* ── NAV ── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:50;
-  backdrop-filter:blur(14px);
-  background:rgba(11,11,18,.7);
-  border-bottom:1px solid transparent;
-  transition:border-color .3s, background .3s;
-}
-nav.scrolled{border-bottom-color:var(--border);background:rgba(11,11,18,.9)}
-.nav-inner{max-width:1100px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:'Sora',sans-serif;font-weight:800;font-size:18px;display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
-.logo-img{width:32px;height:32px;border-radius:9px;object-fit:contain;transition:transform .3s ease, filter .3s ease;filter:drop-shadow(0 0 6px rgba(139,124,247,.3))}
-.logo:hover .logo-img{transform:scale(1.1) rotate(-3deg);filter:drop-shadow(0 0 12px rgba(94,234,212,.7))}
-.logo .dot{background:var(--accent-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.nav-links{display:flex;gap:28px;list-style:none}
-.nav-links a{font-size:13.5px;font-weight:500;color:var(--muted);transition:color .2s;position:relative}
-.nav-links a:hover,.nav-links a.active{color:var(--text)}
-.nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--accent-grad);border-radius:2px;transition:width .25s}
-.nav-links a:hover::after,.nav-links a.active::after{width:100%}
-.nav-cta{padding:8px 18px;border-radius:8px;font-size:13px;font-weight:600;background:var(--accent-grad);color:#0b0b12}
-.hamburger{display:none;background:none;border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:18px;width:38px;height:38px;cursor:pointer}
-
-/* ── HERO ── */
-.hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 60px}
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
-.eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--accent2);background:rgba(94,234,212,.08);
-  border:1px solid rgba(94,234,212,.25);border-radius:30px;
-  padding:6px 14px;margin-bottom:22px;
-}
-.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(94,234,212,.5)}50%{box-shadow:0 0 0 6px rgba(94,234,212,0)}}
-.hero h1{font-size:clamp(38px,6vw,62px);font-weight:800;line-height:1.08;letter-spacing:-.02em;margin-bottom:16px}
-.hero h1 .grad{background:var(--accent-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.role-line{font-family:'Sora';font-size:clamp(16px,2.2vw,20px);font-weight:600;color:var(--muted);margin-bottom:22px;min-height:1.6em}
-.role-line .typed{color:var(--text)}
-.cursor-blink{display:inline-block;width:2px;height:1.1em;background:var(--accent);vertical-align:-0.15em;animation:blink 1s steps(1) infinite;margin-left:2px}
-@keyframes blink{50%{opacity:0}}
-.hero p.lead{color:var(--muted);font-size:15.5px;max-width:520px;margin-bottom:32px}
-.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
-.btn{padding:13px 26px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;transition:transform .2s, box-shadow .2s, border-color .2s;font-family:'Inter';border:none}
-.btn-primary{background:var(--accent-grad);color:#0b0b12;box-shadow:0 8px 30px rgba(139,124,247,.35)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(139,124,247,.5)}
-.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border2)}
-.btn-ghost:hover{transform:translateY(-2px);border-color:var(--accent)}
-
-.socials{display:flex;gap:10px;margin-top:34px}
-.social-btn{
-  width:42px;height:42px;border-radius:10px;
-  background:var(--bg3);border:1px solid var(--border2);
-  display:flex;align-items:center;justify-content:center;
-  transition:all .2s;
-}
-.social-btn svg{width:18px;height:18px;fill:var(--muted);transition:fill .2s}
-.social-btn:hover{transform:translateY(-3px);border-color:var(--accent)}
-.social-btn:hover svg{fill:var(--text)}
-.hero-stats{display:flex;gap:36px;margin-top:32px}
-.hstat .n{font-family:'Sora';font-size:26px;font-weight:700}
-.hstat .n em{font-style:normal;background:var(--accent-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hstat .l{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em}
-
-/* photo side */
-.hero-photo{position:relative;display:flex;justify-content:center}
-.photo-frame{
-  position:relative;width:min(320px,80%);
-  border-radius:160px 160px 20px 20px;overflow:hidden;
-  border:1px solid var(--border2);
-  box-shadow:var(--shadow);
-  transform:rotate(2deg);
-  transition:transform .4s;
-}
-.photo-frame:hover{transform:rotate(0deg) scale(1.03)}
-.photo-frame::before{
-  content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(160deg,rgba(139,124,247,.15),transparent 45%,rgba(94,234,212,.12));
-}
-.photo-frame img{width:100%;height:100%;object-fit:cover;filter:saturate(1.05)}
-.float-chip{
-  position:absolute;background:var(--bg3);border:1px solid var(--border2);
-  border-radius:12px;padding:10px 14px;font-size:12px;font-weight:600;
-  box-shadow:var(--shadow);display:flex;align-items:center;gap:8px;
-  animation:floaty 5s ease-in-out infinite;z-index:2;
-}
-.float-chip .ic{font-size:16px}
-.chip-1{top:4%;right:-10%;animation-delay:0s}
-.chip-2{bottom:10%;left:-12%;animation-delay:1.6s}
-.chip-3{top:46%;right:-14%;animation-delay:3s}
-@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-
-/* ── MARQUEE ── */
-.marquee{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 0;overflow:hidden;background:var(--bg2)}
-.marquee-track{display:flex;gap:48px;width:max-content;animation:scrollx 26s linear infinite}
-.marquee-track span{font-family:'Sora';font-size:14px;font-weight:600;color:var(--faint);white-space:nowrap;display:flex;align-items:center;gap:48px}
-.marquee-track span::after{content:'✦';color:var(--accent);font-size:12px}
-@keyframes scrollx{to{transform:translateX(-50%)}}
-
-/* ── SECTION COMMON ── */
-.section{padding:110px 0}
-.sec-head{margin-bottom:56px}
-.sec-tag{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;display:block}
-.sec-title{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.02em}
-.sec-title .grad{background:var(--accent-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-
-/* ── ABOUT ── */
-.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:start}
-.about-photo{position:relative}
-.about-photo .frame{border-radius:var(--radius);overflow:hidden;border:1px solid var(--border2);transform:rotate(-2deg);transition:transform .4s}
-.about-photo .frame:hover{transform:rotate(0)}
-.about-photo img{filter:grayscale(.35) contrast(1.05)}
-.about-photo .tagbox{
-  position:absolute;bottom:-16px;right:-10px;background:var(--bg3);
-  border:1px solid var(--border2);border-radius:12px;padding:12px 18px;
-  font-size:13px;font-weight:600;box-shadow:var(--shadow);
-}
-.about-photo .tagbox em{font-style:normal;display:block;font-size:11px;color:var(--muted);font-weight:400}
-.about-text p{color:var(--muted);margin-bottom:18px;font-size:15px}
-.about-text p strong{color:var(--text);font-weight:600}
-.about-points{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:26px 0}
-.point{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--muted)}
-.point .tick{color:var(--accent2);font-weight:700;flex-shrink:0}
-.about-cta{display:flex;gap:14px;flex-wrap:wrap}
-
-/* ── SERVICES ── */
-.services-grid{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:18px}
-.svc{
-  background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);
-  padding:30px 26px;position:relative;overflow:hidden;
-  transition:transform .3s, border-color .3s;
-}
-.svc:hover{transform:translateY(-6px);border-color:var(--border2)}
-.svc.featured{border-color:rgba(139,124,247,.4);background:linear-gradient(160deg,rgba(139,124,247,.10),var(--bg2) 55%)}
-.svc .glow{position:absolute;top:-60px;right:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(139,124,247,.18),transparent 70%);pointer-events:none}
-.svc-icon{
-  width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;
-  font-size:24px;margin-bottom:20px;background:var(--bg3);border:1px solid var(--border2);
-}
-.svc.featured .svc-icon{background:rgba(139,124,247,.15);border-color:rgba(139,124,247,.4)}
-.svc h3{font-size:19px;font-weight:700;margin-bottom:4px}
-.svc .svc-sub{font-size:12.5px;color:var(--accent2);font-weight:600;margin-bottom:14px}
-.svc p{font-size:13.5px;color:var(--muted);margin-bottom:18px}
-.svc ul{list-style:none;display:flex;flex-wrap:wrap;gap:7px}
-.svc ul li{
-  font-size:11.5px;font-weight:500;color:var(--muted);
-  background:var(--bg3);border:1px solid var(--border);
-  padding:4px 11px;border-radius:20px;
-}
-.svc .featured-tag{
-  position:absolute;top:18px;right:18px;font-size:10px;font-weight:700;
-  letter-spacing:.08em;text-transform:uppercase;
-  background:var(--accent-grad);color:#0b0b12;padding:4px 10px;border-radius:20px;
-}
-
-/* ── WORK / PROJECTS ── */
-.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.proj{
-  background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);
-  overflow:hidden;display:flex;flex-direction:column;
-  transition:transform .3s, border-color .3s, box-shadow .3s;
-}
-.proj:hover{transform:translateY(-6px);border-color:rgba(139,124,247,.35);box-shadow:0 16px 50px rgba(0,0,0,.45)}
-.proj-visual{
-  height:150px;position:relative;overflow:hidden;
-  display:flex;align-items:center;justify-content:center;
-  border-bottom:1px solid var(--border);
-}
-.proj-visual .big-ic{font-size:52px;filter:drop-shadow(0 8px 20px rgba(0,0,0,.5));transition:transform .4s}
-.proj:hover .proj-visual .big-ic{transform:scale(1.15) rotate(-4deg)}
-.pv-1{background:linear-gradient(135deg,#1b2140,#122a30)}
-.pv-2{background:linear-gradient(135deg,#241b40,#301830)}
-.pv-3{background:linear-gradient(135deg,#103030,#1a2040)}
-.proj-visual .flow-lines{position:absolute;inset:0;opacity:.25;background-image:radial-gradient(circle at 25% 40%, rgba(94,234,212,.6) 0 2px, transparent 3px),radial-gradient(circle at 50% 60%, rgba(139,124,247,.6) 0 2px, transparent 3px),radial-gradient(circle at 75% 35%, rgba(94,234,212,.5) 0 2px, transparent 3px);background-size:140px 140px}
-.proj-body{padding:22px;display:flex;flex-direction:column;flex:1}
-.proj-kind{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
-.k-n8n{color:var(--accent2)}
-.k-web{color:var(--accent)}
-.proj h3{font-size:17px;font-weight:700;margin-bottom:8px}
-.proj p{font-size:13px;color:var(--muted);flex:1;margin-bottom:16px}
-.proj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
-.proj-tags span{font-size:10.5px;color:var(--faint);background:var(--bg3);border:1px solid var(--border);padding:3px 9px;border-radius:14px}
-.proj-link{font-size:13px;font-weight:600;color:var(--accent2);display:inline-flex;align-items:center;gap:6px;transition:gap .2s}
-.proj-link:hover{gap:10px}
-
-/* ── PROCESS STRIP ── */
-.process{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.step{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:22px 18px;transition:border-color .3s, transform .3s}
-.step:hover{border-color:var(--border2);transform:translateY(-4px)}
-.step .num{font-family:'Sora';font-size:13px;font-weight:700;color:var(--accent);margin-bottom:10px}
-.step h4{font-size:15px;font-weight:700;margin-bottom:6px}
-.step p{font-size:12.5px;color:var(--muted)}
-
-/* ── CONTACT ── */
-.contact-card{
-  background:linear-gradient(150deg,rgba(139,124,247,.12),var(--bg2) 50%);
-  border:1px solid rgba(139,124,247,.3);border-radius:24px;
-  padding:70px 40px;text-align:center;
-}
-.contact-card h2{font-size:clamp(26px,4vw,38px);font-weight:800;margin-bottom:14px;letter-spacing:-.02em}
-.contact-card h2 .grad{background:var(--accent-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.contact-card p{color:var(--muted);max-width:480px;margin:0 auto 32px;font-size:15px}
-.contact-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-
-/* ── FOOTER ── */
-footer{border-top:1px solid var(--border);padding:30px 0;background:var(--bg2)}
-.foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
-.foot-inner p{font-size:13px;color:var(--faint)}
-.foot-links{display:flex;gap:20px}
-.foot-links a{font-size:13px;color:var(--muted);transition:color .2s}
-.foot-links a:hover{color:var(--text)}
-
-/* ── REVEAL ANIMATION ── */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
-
-/* ── RESPONSIVE ── */
-@media(max-width:900px){
-  .hero-grid,.about-grid{grid-template-columns:1fr;gap:44px}
-  .hero{padding-top:100px}
-  .hero-photo{order:-1}
-  .services-grid,.work-grid{grid-template-columns:1fr}
-  .process{grid-template-columns:1fr 1fr}
-  .nav-links{
-    display:none;position:absolute;top:100%;left:0;right:0;
-    background:var(--bg2);border-bottom:1px solid var(--border);
-    flex-direction:column;padding:18px 24px;gap:18px;
-  }
-  .nav-links.open{display:flex}
-  .hamburger{display:block}
-  .nav-cta{display:none}
-}
-@media(max-width:560px){
-  .process{grid-template-columns:1fr}
-  .about-points{grid-template-columns:1fr}
-  .hero-stats{gap:22px;flex-wrap:wrap}
-  .float-chip{display:none}
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vinayak Acharya — Portfolio</title>
+  <meta name="description" content="Portfolio of Vinayak Acharya — Automation & Web Developer."/>
+  
+  <link rel="icon" type="image/svg+xml" href="logo.svg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css?v=3" />
 </head>
 <body>
 
-<div class="bg-glow"></div>
-
-<!-- ══ NAV ══ -->
-<nav id="nav">
-  <div class="nav-inner">
-    <a href="#home" class="logo" aria-label="Vinayak Acharya Homepage">
-      <img src="logo.svg" alt="Vinayak Logo" class="logo-img" width="32" height="32" />
-      <span class="logo-text">Vinayak<span class="dot">.</span>dev</span>
-    </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#home" class="active">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <a href="#contact" class="nav-cta">Let's Talk</a>
-    <button class="hamburger" id="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
-  </div>
-</nav>
-
-<!-- ══ HERO ══ -->
-<section class="hero" id="home">
-  <div class="container hero-grid">
-    <div>
-      <div class="eyebrow reveal"><span class="dot"></span> Available for new projects</div>
-      <h1 class="reveal d1">Hey, I'm <span class="grad">Vinayak</span> —<br>I automate work with AI.</h1>
-      <div class="role-line reveal d2">I build <span class="typed" id="typed"></span><span class="cursor-blink"></span></div>
-      <p class="lead reveal d3">
-        I help businesses save hours every week by connecting their tools with
-        <strong style="color:var(--text)">AI-powered n8n automations</strong> — and I craft clean,
-        reliable web apps that people love to use.
-      </p>
-      <div class="hero-actions reveal d4">
-        <a href="#work" class="btn btn-primary">View My Work →</a>
-        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
-      </div>
-      <div class="socials reveal d4">
-        <a class="social-btn" href="mailto:acharyavinayak5@gmail.com" title="Email" aria-label="Email">
-          <svg viewBox="0 0 24 24"><path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm10 8.7L3.6 6h16.8L12 12.7zM3 8.2V18h18V8.2l-9 6.6-9-6.6z"/></svg>
-        </a>
-        <a class="social-btn" href="https://www.linkedin.com/in/vinayak-acharya-684242385" target="_blank" title="LinkedIn" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.49 2.49 0 1 1 0 3.5a2.49 2.49 0 0 1 4.98 0zM.5 8h4.98v14H.5V8zm7.98 0h4.77v1.9h.07c.66-1.26 2.28-2.58 4.7-2.58 5.03 0 5.96 3.31 5.96 7.6V22h-4.97v-6.5c0-1.55-.03-3.55-2.16-3.55-2.17 0-2.5 1.69-2.5 3.43V22H8.48V8z"/></svg>
-        </a>
-        <a class="social-btn" href="https://github.com/VinayakAcharya06" target="_blank" title="GitHub" aria-label="GitHub">
-          <svg viewBox="0 0 24 24"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.93c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.54-3.87-1.54-.53-1.32-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.05.78 2.13v3.16c0 .31.2.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
-        </a>
-      </div>
-      <div class="hero-stats reveal d4">
-        <div class="hstat"><div class="n"><em>10+</em></div><div class="l">Workflows built</div></div>
-        <div class="hstat"><div class="n"><em>3</em></div><div class="l">Core services</div></div>
-        <div class="hstat"><div class="n"><em>∞</em></div><div class="l">Hours saved for clients</div></div>
-      </div>
-    </div>
-    <div class="hero-photo reveal d2">
-      <div class="float-chip chip-1"><span class="ic">⚡</span> n8n Automation</div>
-      <div class="float-chip chip-2"><span class="ic">🤖</span> AI Agents</div>
-      <div class="float-chip chip-3"><span class="ic">🌐</span> Web Development</div>
-      <div class="photo-frame">
-        <img src="profile.png" alt="Vinayak Acharya"/>
+  <!-- Intro Animation Overlay -->
+  <div class="intro-overlay" id="introOverlay">
+    <div class="intro-logo">
+      <svg class="watermelon-loader" viewBox="0 0 100 100" width="100" height="100">
+        <!-- SVG Watermelon style animation using a semi-circle that scales or fills -->
+        <path class="slice-bg" d="M10,50 A40,40 0 0,0 90,50 Z" />
+        <path class="slice-fill" d="M15,50 A35,35 0 0,0 85,50 Z" />
+        <circle class="seed s1" cx="35" cy="65" r="2.5" />
+        <circle class="seed s2" cx="50" cy="75" r="2.5" />
+        <circle class="seed s3" cx="65" cy="65" r="2.5" />
+      </svg>
+      <div class="intro-text">
+        <span class="v-letter">V</span><span class="rest-letters">INAYAK</span>
       </div>
     </div>
   </div>
-</section>
 
-<!-- ══ MARQUEE ══ -->
-<div class="marquee">
-  <div class="marquee-track" id="marqueeTrack">
-    <span>n8n</span><span>OpenAI</span><span>Webhooks</span><span>REST APIs</span><span>JavaScript</span><span>HTML / CSS</span><span>RAG Pipelines</span><span>Gmail API</span><span>Workflow Design</span><span>Web Testing</span>
-  </div>
-</div>
-
-<!-- ══ ABOUT ══ -->
-<section class="section" id="about">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="sec-tag">About Me</span>
-      <h2 class="sec-title">The human behind <span class="grad">the automations</span></h2>
-    </div>
-    <div class="about-grid">
-      <div class="about-photo reveal d1">
-        <div class="frame"><img src="profile.png" alt="Vinayak Acharya portrait"/></div>
-        <div class="tagbox">Vinayak Acharya<em>Automation Developer & Web Engineer</em></div>
+  <nav id="nav">
+    <div class="nav-inner">
+      <div class="nav-status">
+        <span class="dot"></span> Available for New Project
       </div>
-      <div class="about-text reveal d2">
-        <p>
-          I'm <strong>Vinayak Acharya</strong>, a developer obsessed with one idea: <strong>repetitive work
-          should be done by machines, not people.</strong> My core service is building <strong>AI automation
-          systems with n8n</strong> — workflows that read emails, answer customers, summarize documents and
-          sync data across tools, all on their own.
-        </p>
-        <p>
-          Alongside automation, I build <strong>fast, clean websites and web apps</strong> from scratch, and I
-          make sure they work flawlessly through careful <strong>web testing</strong>. Every project I ship is
-          measured by one thing — <strong>time and money it saves you.</strong>
-        </p>
-        <div class="about-points">
-          <div class="point"><span class="tick">✓</span> AI-first mindset — automation before manual work</div>
-          <div class="point"><span class="tick">✓</span> Clean, documented, easy-to-maintain workflows</div>
-          <div class="point"><span class="tick">✓</span> Full-cycle delivery: build, test, deploy, support</div>
-          <div class="point"><span class="tick">✓</span> Clear communication, no tech jargon</div>
+      <ul class="nav-links">
+        <li><a href="#work">Work <span>[3]</span></a></li>
+        <li><a href="#services">Service <span>[3]</span></a></li>
+        <li><a href="#experience">Experience <span>[3y+]</span></a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta">Let's Talk <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg></a>
+    </div>
+  </nav>
+
+  <header class="hero" id="home">
+    <div class="hero-bg-text">
+      <div class="moving-text">
+        <div class="marquee-half">
+          <span class="outline">VINAYAK</span> <span class="solid">ACHARYA</span>
+          <span class="outline">VINAYAK</span> <span class="solid">ACHARYA</span>
         </div>
-        <div class="about-cta">
-          <a href="#work" class="btn btn-primary">See What I've Built</a>
-          <a href="https://github.com/VinayakAcharya06" target="_blank" class="btn btn-ghost">GitHub Profile</a>
+        <div class="marquee-half">
+          <span class="outline">VINAYAK</span> <span class="solid">ACHARYA</span>
+          <span class="outline">VINAYAK</span> <span class="solid">ACHARYA</span>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ══ SERVICES ══ -->
-<section class="section" id="services" style="padding-top:40px">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="sec-tag">Services</span>
-      <h2 class="sec-title">What I can do <span class="grad">for you</span></h2>
-    </div>
-    <div class="services-grid">
-      <div class="svc featured reveal d1">
-        <span class="featured-tag">Main Service</span>
-        <div class="glow"></div>
-        <div class="svc-icon">⚡</div>
-        <h3>AI Automation with n8n</h3>
-        <div class="svc-sub">My specialty — workflows that work while you sleep</div>
-        <p>
-          I design and build intelligent n8n workflows that connect your apps, emails, CRMs and documents
-          with AI. Leads get answered instantly, data flows without copy-paste, and reports write themselves.
-        </p>
-        <ul>
-          <li>AI email auto-responders</li>
-          <li>RAG chatbots on your data</li>
-          <li>Lead capture &amp; CRM sync</li>
-          <li>AI content pipelines</li>
-          <li>App-to-app integrations</li>
-          <li>Error monitoring &amp; alerts</li>
-        </ul>
+    
+    <div class="hero-content">
+      <div class="hero-left">
+        <h1>Automation & Web Developer</h1>
+        <p>Building AI-powered automations and responsive business websites that save time and drive conversions.</p>
+        <a href="#contact" class="btn-dark">Let's collaborate <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg></a>
       </div>
-      <div class="svc reveal d2">
-        <div class="svc-icon">🌐</div>
-        <h3>Web Development</h3>
-        <div class="svc-sub">Clean, fast, purposeful websites</div>
-        <p>
-          Responsive websites and web apps built with modern HTML, CSS and JavaScript — designed to
-          convert visitors into clients.
-        </p>
-        <ul>
-          <li>Landing pages</li>
-          <li>Web apps</li>
-          <li>Dashboards</li>
-          <li>UI implementation</li>
-        </ul>
+      
+      <div class="hero-center">
+        <!-- Using profile.png from the current directory -->
+        <img src="profile.png" alt="Vinayak Acharya" class="profile-img" />
       </div>
-      <div class="svc reveal d3">
-        <div class="svc-icon">🧪</div>
-        <h3>Web Testing</h3>
-        <div class="svc-sub">Bug-free delivery, guaranteed</div>
-        <p>
-          Thorough functional and UI testing of websites and workflows so everything works exactly
-          as promised — before your users ever notice a problem.
-        </p>
-        <ul>
-          <li>Functional testing</li>
-          <li>UI / UX checks</li>
-          <li>Workflow testing</li>
-          <li>Bug reports</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ WORK ══ -->
-<section class="section" id="work" style="padding-top:40px">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="sec-tag">Selected Work</span>
-      <h2 class="sec-title">Things I've <span class="grad">built</span></h2>
-    </div>
-    <div class="work-grid">
-      <!-- n8n 1 -->
-      <div class="proj reveal d1">
-        <div class="proj-visual pv-1"><div class="flow-lines"></div><span class="big-ic">📧</span></div>
-        <div class="proj-body">
-          <div class="proj-kind k-n8n">n8n · AI Automation</div>
-          <h3>Gmail AutoResponder</h3>
-          <p>
-            An AI-powered n8n workflow that watches your Gmail inbox and automatically drafts smart,
-            context-aware replies — so no email ever sits unanswered.
-          </p>
-          <div class="proj-tags"><span>n8n</span><span>Gmail API</span><span>AI</span><span>Webhooks</span></div>
-          <a class="proj-link" href="https://github.com/VinayakAcharya06/n8n-projects" target="_blank">View on GitHub →</a>
-        </div>
-      </div>
-      <!-- n8n 2 -->
-      <div class="proj reveal d2">
-        <div class="proj-visual pv-2"><div class="flow-lines"></div><span class="big-ic">🤖</span></div>
-        <div class="proj-body">
-          <div class="proj-kind k-n8n">n8n · AI Automation</div>
-          <h3>RAG Pipeline &amp; ChatBot</h3>
-          <p>
-            A retrieval-augmented generation pipeline built in n8n: your documents get indexed and a
-            chatbot answers questions from <em>your</em> data — accurate, grounded, no hallucinated fluff.
-          </p>
-          <div class="proj-tags"><span>n8n</span><span>RAG</span><span>Vector Store</span><span>LLM</span></div>
-          <a class="proj-link" href="https://github.com/VinayakAcharya06/n8n-projects" target="_blank">View on GitHub →</a>
-        </div>
-      </div>
-      <!-- Web -->
-      <div class="proj reveal d3">
-        <div class="proj-visual pv-3"><div class="flow-lines"></div><span class="big-ic">📚</span></div>
-        <div class="proj-body">
-          <div class="proj-kind k-web">Web Development</div>
-          <h3>StudyTrack — Spaced Repetition App</h3>
-          <p>
-            A full study companion web app: flashcards, topics, slides and tasks with an SM-2-style
-            spaced-repetition engine, review sessions, stats dashboard and local persistence.
-          </p>
-          <div class="proj-tags"><span>HTML / CSS</span><span>JavaScript</span><span>SPA</span><span>localStorage</span></div>
-          <a class="proj-link" href="https://study-tracker-two-delta.vercel.app/" target="_blank" rel="noopener">Open Live Demo ↗</a>
+      
+      <div class="hero-right">
+        <div class="social-links">
+          <a href="https://github.com/VinayakAcharya06" target="_blank" class="social-pill">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/vinayak-acharya-684242385" target="_blank" class="social-pill">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            LinkedIn
+          </a>
+          <a href="mailto:acharyavinayak5@gmail.com" class="social-pill">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            Email
+          </a>
         </div>
       </div>
     </div>
+  </header>
 
-    <!-- process -->
-    <div style="margin-top:80px">
-      <div class="sec-head reveal" style="margin-bottom:36px">
-        <span class="sec-tag">How I Work</span>
-        <h2 class="sec-title" style="font-size:clamp(22px,3vw,30px)">Simple process, <span class="grad">real results</span></h2>
+  <section class="work" id="work">
+    <div class="container">
+      <div class="section-bg-text">PORTFOLIO</div>
+      <h2 class="section-title">/SELECTED WORK</h2>
+      
+      <div class="work-header">
+        <div class="filters">
+          <button class="active">All</button>
+          <button>Real Project</button>
+          <button>Exploration</button>
+        </div>
+        <a href="https://github.com/VinayakAcharya06" target="_blank" class="btn-outline">View All Work <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg></a>
       </div>
-      <div class="process">
-        <div class="step reveal d1"><div class="num">01</div><h4>Understand</h4><p>We map your repetitive tasks and pick what to automate first for maximum impact.</p></div>
-        <div class="step reveal d2"><div class="num">02</div><h4>Build</h4><p>I design and build your n8n workflow or website — clean, documented, tested.</p></div>
-        <div class="step reveal d3"><div class="num">03</div><h4>Test</h4><p>Every edge case checked. The workflow runs silently and reliably in production.</p></div>
-        <div class="step reveal d4"><div class="num">04</div><h4>Support</h4><p>I stay around to tweak, scale and improve as your needs grow.</p></div>
+      
+      <div class="work-grid">
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="project-img p1-bg">
+             <div class="tag">REAL PROJECT</div>
+             <div class="img-content">
+                <h3>StudyTrack</h3>
+                <p>Spaced Repetition App</p>
+             </div>
+             <div class="hover-circle"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg></div>
+          </div>
+          <div class="project-info">
+            <h3>StudyTrack - Spaced Repetition App</h3>
+            <div class="tags">
+              <span>Web App</span>
+              <span>JS / LocalStorage</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="project-img p2-bg">
+             <div class="tag">REAL PROJECT</div>
+             <div class="img-content">
+                <h3>Gmail AutoResponder</h3>
+                <p>n8n AI Automation</p>
+             </div>
+             <div class="hover-circle"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg></div>
+          </div>
+          <div class="project-info">
+            <h3>Gmail AI AutoResponder</h3>
+            <div class="tags">
+              <span>Automation</span>
+              <span>n8n Workflow</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══ CONTACT ══ -->
-<section class="section" id="contact" style="padding-top:40px">
-  <div class="container">
-    <div class="contact-card reveal">
-      <h2>Have a task that's eating <span class="grad">your hours?</span></h2>
-      <p>
-        Tell me what you do manually every day  I'll tell you honestly whether it can be automated,
-        and exactly how much time you'll get back.
-      </p>
-      <div class="contact-btns">
-        <a href="mailto:acharyavinayak5@gmail.com" class="btn btn-primary">✉️ Email Me</a>
-        <a href="https://www.linkedin.com/in/vinayak-acharya-684242385" target="_blank" class="btn btn-ghost">LinkedIn</a>
-        <a href="https://github.com/VinayakAcharya06" target="_blank" class="btn btn-ghost">GitHub</a>
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-bg-text">SERVICE</div>
+      <h2 class="section-title">/SERVICE</h2>
+      
+      <div class="service-list">
+        <div class="service-item expanded">
+          <div class="service-header">
+            <h3>WEB DESIGN & DEV</h3>
+            <button class="toggle-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+          </div>
+          <div class="service-content">
+            <p>Building fast, responsive, and robust websites tailored for businesses and growth.</p>
+            <div class="floating-mockups">
+              <div class="mockup-img m1"></div>
+              <div class="mockup-img m2"></div>
+              <div class="mockup-img m3"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="service-item">
+          <div class="service-header">
+            <h3>AI AUTOMATION</h3>
+            <button class="toggle-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
+          </div>
+          <div class="service-content">
+            <p>Designing and building intelligent workflows that connect your apps, emails, CRMs, and documents.</p>
+            <div class="floating-mockups ai-mockups">
+              <div class="mockup-node n1"></div>
+              <div class="mockup-node n2"></div>
+              <div class="mockup-node n3"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="service-item">
+          <div class="service-header">
+            <h3>WEB TESTING</h3>
+            <button class="toggle-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
+          </div>
+          <div class="service-content">
+            <p>Thorough functional and UI testing of websites to ensure everything works exactly as promised.</p>
+            <div class="floating-mockups test-mockups">
+              <div class="mockup-check c1">✓</div>
+              <div class="mockup-check c2">✓</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══ FOOTER ══ -->
-<footer>
-  <div class="container foot-inner">
-    <p>© 2026 Vinayak Acharya · Built with care, not templates.</p>
-    <div class="foot-links">
-      <a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#work">Work</a><a href="https://www.linkedin.com/in/vinayak-acharya-684242385" target="_blank">LinkedIn</a>
+  <footer class="footer" id="contact">
+    <div class="footer-cloud-bg"></div>
+    <div class="container">
+      <div class="nav-status center">
+        <span class="dot"></span> Available for New Project
+      </div>
+      
+      <h2 class="huge-footer-title">HAVE A PROJECT IN MIND?</h2>
+      <p class="footer-desc">Together, we can create something clear and impactful. Let's collaborate to bring our ideas to life in a way that resonates with everyone.</p>
+      
+      <a href="mailto:acharyavinayak5@gmail.com" class="btn-dark mx-auto">Contact Me <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg></a>
+      
+      <div class="footer-bottom">
+        <div class="footer-profile">
+          <img src="profile.png" alt="Vinayak" class="sm-profile"/>
+          <span>Vinayak Acharya</span>
+        </div>
+        <div class="social-links horizontal">
+          <a href="https://github.com/VinayakAcharya06" target="_blank" class="social-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg> GitHub</a>
+          <a href="https://www.linkedin.com/in/vinayak-acharya-684242385" target="_blank" class="social-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg> LinkedIn</a>
+          <a href="mailto:acharyavinayak5@gmail.com" class="social-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> Email</a>
+        </div>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-<script>
-/* ── typed role rotator ── */
-const roles = [
-  "n8n AI automations that save hours.",
-  "web apps that look & work great.",
-  "chatbots trained on your data.",
-  "workflows that never sleep."
-];
-const typedEl = document.getElementById('typed');
-let ri = 0, ci = 0, deleting = false;
-function typeLoop(){
-  const word = roles[ri];
-  typedEl.textContent = word.slice(0, ci);
-  if(!deleting){
-    if(ci < word.length){ ci++; setTimeout(typeLoop, 55); }
-    else { deleting = true; setTimeout(typeLoop, 1800); }
-  } else {
-    if(ci > 0){ ci--; setTimeout(typeLoop, 28); }
-    else { deleting = false; ri = (ri+1) % roles.length; setTimeout(typeLoop, 350); }
-  }
-}
-typeLoop();
-
-/* ── nav scroll state ── */
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 30);
-});
-
-/* ── mobile nav close on click ── */
-document.querySelectorAll('#navLinks a').forEach(a =>
-  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'))
-);
-
-/* ── scroll reveal ── */
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-/* ── active nav link on scroll ── */
-const sections = ['home','about','services','work','contact'];
-window.addEventListener('scroll', () => {
-  let current = 'home';
-  sections.forEach(id => {
-    const el = document.getElementById(id);
-    if(el && window.scrollY >= el.offsetTop - 200) current = id;
-  });
-  document.querySelectorAll('#navLinks a').forEach(a =>
-    a.classList.toggle('active', a.getAttribute('href') === '#' + current)
-  );
-});
-
-/* ── duplicate marquee for seamless loop ── */
-const mt = document.getElementById('marqueeTrack');
-mt.innerHTML += mt.innerHTML;
-</script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>
